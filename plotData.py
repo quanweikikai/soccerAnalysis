@@ -36,17 +36,28 @@ def animation_Data(filename='data.pkl'):
 	length=len(dataList)
 	width=len(dataList[0])
 	
-	text="soccer data"
+	text="data"
 	data_x,data_y=genData(dataList)
 	fig=plt.figure()
     #initial the plot	
 	dot=plt.plot(data_x[:,0],data_y[:,0],"ro")[0]
 
-	plt.xlim([-100,100])
-	plt.ylim([-100,100])
+	plt.xlim([np.min(data_x),np.max(data_x)])
+	plt.ylim([np.min(data_y),np.max(data_y)])
 
 	
 	#ax.set_title('3D simulation \n '+text)
 
-	stick_ani=animation.FuncAnimation(fig,updateDot,length,fargs=(data_x,data_y,dot),interval=5,blit=False)
+	stick_ani=animation.FuncAnimation(fig,updateDot,length,fargs=(data_x,data_y,dot),interval=10,blit=False)
+	stick_ani.save(filename+".mp4")
 	plt.show()
+
+def plotTest(filename):
+	#prefix="makeDataRun2P_"
+	#postfix=".pkl"
+	#filename=prefix+str(index)+postfix
+	animation_Data(filename)
+
+
+	
+
